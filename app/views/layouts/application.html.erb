@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -9,58 +10,83 @@
   </head>
 
   <body>
-    <div class="header">
-      <span>
-        Bookers
-      </span>
-      <!-- header-right-mene -->
-      <ul class="nav navbar-nav navbar-right" data-hover="dropdown" data-animation="zoomIn fadeIn fadeInUp fadeIn">
-        <% if user_signed_in? %>
-          <li class="">
-            <%= link_to user_path(current_user) do %>
-              <span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home
-            <% end %>
-          </li>
-          <li class="">
-            <%= link_to users_path do %>
-              <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Users
-            <% end %>
-          </li>
-          <li class="">
-            <%= link_to books_path do %>
-              <span class="glyphicon glyphicon-book" aria-hidden="true"></span> Books
-            <% end %>
-          </li>
-          <li class="">
-            <%= link_to destroy_user_session_path, method: :delete do %>
-            <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> logout
-            <% end %>
-          </li>
+      <!-- header -->
+    <header class="navbar navbar-fixed-top navbar-inverse" style="background-color: #000;">
+      <div class="container">
+        <nav class="nav navbar-nav navbar-left" style="color: #fff; font-size: 20px;">
+          <span>Bookers</span>
+        </nav>
+        <!-- header-right-mene -->
+        <nav>
+          <ul class="nav navbar-nav navbar-right" data-hover="dropdown" data-animation="zoomIn fadeIn fadeInUp fadeIn">
+            <% if user_signed_in? %>
+              <li class="">
+                <%= link_to user_path(current_user) do %>
+                  <span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home
+                <% end %>
+              </li>
+              <li class="">
+                <%= link_to users_path do %>
+                  <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Users
+                <% end %>
+              </li>
+              <li class="">
+                <%= link_to books_path do %>
+                  <span class="glyphicon glyphicon-book" aria-hidden="true"></span> Books
+                <% end %>
+              </li>
+              <li class="">
+                <%= link_to destroy_user_session_path, method: :delete do %>
+                <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> logout
+                <% end %>
+              </li>
 
-        <% else %>
-          <li class="">
-            <%= link_to root_path do %>
-              <span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home
+            <% else %>
+              <li class="">
+                <%= link_to root_path do %>
+                  <span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home
+                <% end %>
+              </li>
+              <li class="">
+                <%= link_to home_about_path do %>
+                  <span class="glyphicon glyphicon-link" aria-hidden="true"></span> About
+                <% end %>
+              </li>
+              <li class="">
+                <%= link_to new_user_registration_path do %>
+                  <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> sign up
+                <% end %>
+              </li>
+              <li class="">
+                <%= link_to new_user_session_path do %>
+                  <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> login
+                <% end %>
+              </li>
             <% end %>
-          </li>
-          <li class="">
-            <%= link_to homes_about_path do %>
-              <span class="glyphicon glyphicon-link" aria-hidden="true"></span> About
-            <% end %>
-          </li>
-          <li class="">
-            <%= link_to new_user_session_path do %>
-              <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> sign up
-            <% end %>
-          </li>
-          <li class="">
-            <%= link_to new_user_registration_path do %>
-              <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> login
-            <% end %>
-          </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+      <!-- header -->
+    <div class="body" style="margin-top: 50px;">
+      <div class="container">
+        <% flash.each do |key, value| %>
+          <%= content_tag(:div, value, class: "#{key}") %>
         <% end %>
-      </ul>
+      <%= yield %>
+      </div>
     </div>
-    <%= yield %>
+  <!-- footer -->
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-3 col-xs-offset-9">
+            <p>CopyRight Infratop.Inc</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  <!-- footer -->
+    </div>
   </body>
 </html>
